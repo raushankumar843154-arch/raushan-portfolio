@@ -651,6 +651,10 @@ section {
     display: grid;
 
     grid-template-columns: repeat(3, 1fr);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
 
     gap: 20px;
 }
@@ -759,7 +763,7 @@ button {
     cursor: pointer;
 }
 button:hover {
-    background: #e6790c;
+    background: white;
     transform: translateY(-3px);
 }
 
