@@ -331,21 +331,41 @@
                 me a message.
             </p>
 
-            <form>
+            <form action="https://api.web3forms.com/submit" method="POST">
 
-                <input type="text" placeholder="Your Name" required>
+    <!-- Web3Forms Access Key -->
+    <input type="hidden" name="access_key" value="bb0dcbb0-4cc2-4f8f-b186-dcc424664543">
 
-                <input type="email" placeholder="Your Email" required>
+    <!-- Subject of Email -->
+    <input type="hidden" name="subject" value="New Message from Raushan Portfolio">
 
-                <textarea placeholder="Your Message" rows="6" required></textarea>
+    <!-- Visitor Name -->
+    <input
+        type="text"
+        name="name"
+        placeholder="Your Name"
+        required
+    >
 
-                <button type="submit">Send Message</button>
+    <!-- Visitor Email -->
+    <input
+        type="email"
+        name="email"
+        placeholder="Your Email"
+        required
+    >
 
-            </form>
+    <!-- Visitor Message -->
+    <textarea
+        name="message"
+        placeholder="Your Message"
+        rows="6"
+        required
+    ></textarea>
 
-        </div>
+    <button type="submit">Send Message</button>
 
-    </section>
+</form>
 
 
     <!-- Footer -->
