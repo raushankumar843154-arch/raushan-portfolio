@@ -174,4 +174,103 @@ if (contactForm) {
 
     });
 }
+// =====================================
+// CONTACT FORM + WEB3FORMS + CAPTCHA
+// =====================================
+
+const contactForm = document.getElementById("contact-form");
+const formResult = document.getElementById("form-result");
+
+if (contactForm) {
+
+    contactForm.addEventListener("submit", async function (e) {
+
+        e.preventDefault();
+
+        // Check CAPTCHA
+        const captcha = contactForm.querySelector(
+            'textarea[name="h-captcha-response"]'
+        );
+
+        if (!captcha || !captcha.value) {
+
+            formResult.textContent =
+                "Please complete the CAPTCHA.";
+
+            formResult.style.color = "red";
+
+            return;
+        }
+
+        const button = contactForm.querySelector(
+            'button[type="submit"]'
+        );
+
+        const originalText = button.textContent;
+
+        button.disabled = true;
+        button.textContent = "Sending...";
+
+        formResult.textContent = "";
+
+        const formData = new FormData(contactForm);
+
+        const data = Object.fromEntries(
+            formData.entries()
+        );
+
+        try {
+
+            const response = await fetch(
+                "https://api.web3forms.com/submit",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+
+                    body: JSON.stringify(data)
+                }
+            );
+
+            const result = await response.json();
+
+            if (result.success) {
+
+                formResult.textContent =
+                    "Message sent successfully!";
+
+                formResult.style.color = "green";
+
+                contactForm.reset();
+
+            } else {
+
+                formResult.textContent =
+                    result.message ||
+                    "Message could not be sent.";
+
+                formResult.style.color = "red";
+            }
+
+        } catch (error) {
+
+            console.error(error);
+
+            formResult.textContent =
+                "Something went wrong. Please try again.";
+
+            formResult.style.color = "red";
+
+        } finally {
+
+            button.disabled = false;
+            button.textContent = originalText;
+
+        }
+
+    });
+}
 
