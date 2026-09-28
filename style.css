@@ -750,17 +750,47 @@ section {
 
 /* Footer */
 
-footer {
-    background: #111;
-
-    color: white;
-
-    text-align: center;
-
-    padding: 20px;
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 40px;
+    background-color: #111;
+    border-top: 1px solid #333;
+    color: #888;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
+.footer-center {
+    text-align: center;
+}
 
+.footer-right {
+    display: flex;
+    gap: 25px;
+}
+
+.footer-right a {
+    color: #888;
+    font-size: 24px;
+    transition: color 0.3s, transform 0.2s;
+}
+
+.footer-right a:hover {
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+/* Mobile pe sab upar-neeche aa jayein */
+@media (max-width: 700px) {
+    .footer {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+}
 /* Mobile Responsive */
 
 @media (max-width: 768px) {
