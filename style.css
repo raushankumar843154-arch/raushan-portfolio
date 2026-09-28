@@ -715,37 +715,56 @@ section {
 }
 
 
-.social-contact-links {
+form {
+    margin-top: 25px;
+
     display: flex;
-    gap: 20px;
-    justify-content: center;
-    margin-top: 30px;
-    flex-wrap: wrap;
-}
 
-.contact-btn {
-    padding: 12px 30px;
-    border-radius: 8px;
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    transition: transform 0.2s;
-}
+    flex-direction: column;
 
+    gap: 15px;
+    transform: scale(0.3s );
+}
 .contact-btn:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 10px 25px rgba(187, 14, 14, 0.08);
+}
+
+
+input,
+textarea {
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 5px;
+
+    font-size: 16px;
+}
+
+
+
+button {
+    padding: 12px;
+
+    border: none;
+
+    background: #00adb5;
+
+    color: white;
+
+    font-size: 16px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+button:hover {
+    background: white;
     transform: translateY(-3px);
-}
-
-.whatsapp {
-    background-color: #25D366;
-}
-
-.instagram {
-    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-}
-
-.facebook {
-    background-color: #1877F2;
 }
 
 /* Footer */
