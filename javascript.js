@@ -7,7 +7,7 @@
 const typingText = document.getElementById("typing-text");
 
 const words = [
-    "Web Developer",
+    "Python Developer",
     "Frontend Developer",
     "Programmer"
 ];
@@ -96,181 +96,42 @@ revealOnScroll();
 // CONTACT FORM - WEB3FORMS
 // ===============================
 
-const contactForm = document.getElementById("contact-form");
-const formResult = document.getElementById("form-result");
 
-if (contactForm) {
 
-    contactForm.addEventListener("submit", async function (e) {
+const form = document.getElementById('form');
+const submitBtn = form.querySelector('button[type="submit"]');
 
-        // Stop normal page redirect
-        e.preventDefault();
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-        const button = contactForm.querySelector(
-            'button[type="submit"]'
-        );
+    const formData = new FormData(form);
+    formData.append("access_key", "b45b3a27-24d3-40fd-90e1-99d75d034837");
 
-        const originalText = button.textContent;
+    const originalText = submitBtn.textContent;
 
-        button.disabled = true;
-        button.textContent = "Sending...";
+    submitBtn.textContent = "Sending...";
+    submitBtn.disabled = true;
 
-        formResult.textContent = "";
+    try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            body: formData
+        });
 
-        const formData = new FormData(contactForm);
+        const data = await response.json();
 
-        const data = Object.fromEntries(formData.entries());
-
-        try {
-
-            const response = await fetch(
-                "https://api.web3forms.com/submit",
-                {
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Accept": "application/json"
-                    },
-
-                    body: JSON.stringify(data)
-                }
-            );
-
-            const result = await response.json();
-
-            if (result.success) {
-
-                formResult.textContent =
-                    "Message sent successfully!";
-
-                formResult.style.color = "green";
-
-                contactForm.reset();
-
-            } else {
-
-                formResult.textContent =
-                    result.message ||
-                    "Message could not be sent.";
-
-                formResult.style.color = "red";
-            }
-
-        } catch (error) {
-
-            console.error(error);
-
-            formResult.textContent =
-                "Something went wrong. Please try again.";
-
-            formResult.style.color = "red";
-
-        } finally {
-
-            button.disabled = false;
-            button.textContent = originalText;
+        if (response.ok) {
+            alert("Success! Your message has been sent.");
+            form.reset();
+        } else {
+            alert("Error: " + data.message);
         }
 
-    });
-}
-// =====================================
-// CONTACT FORM + WEB3FORMS + CAPTCHA
-// =====================================
-
-const contactForm = document.getElementById("contact-form");
-const formResult = document.getElementById("form-result");
-
-if (contactForm) {
-
-    contactForm.addEventListener("submit", async function (e) {
-
-        e.preventDefault();
-
-        // Check CAPTCHA
-        const captcha = contactForm.querySelector(
-            'textarea[name="h-captcha-response"]'
-        );
-
-        if (!captcha || !captcha.value) {
-
-            formResult.textContent =
-                "Please complete the CAPTCHA.";
-
-            formResult.style.color = "red";
-
-            return;
-        }
-
-        const button = contactForm.querySelector(
-            'button[type="submit"]'
-        );
-
-        const originalText = button.textContent;
-
-        button.disabled = true;
-        button.textContent = "Sending...";
-
-        formResult.textContent = "";
-
-        const formData = new FormData(contactForm);
-
-        const data = Object.fromEntries(
-            formData.entries()
-        );
-
-        try {
-
-            const response = await fetch(
-                "https://api.web3forms.com/submit",
-                {
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Accept": "application/json"
-                    },
-
-                    body: JSON.stringify(data)
-                }
-            );
-
-            const result = await response.json();
-
-            if (result.success) {
-
-                formResult.textContent =
-                    "Message sent successfully!";
-
-                formResult.style.color = "green";
-
-                contactForm.reset();
-
-            } else {
-
-                formResult.textContent =
-                    result.message ||
-                    "Message could not be sent.";
-
-                formResult.style.color = "red";
-            }
-
-        } catch (error) {
-
-            console.error(error);
-
-            formResult.textContent =
-                "Something went wrong. Please try again.";
-
-            formResult.style.color = "red";
-
-        } finally {
-
-            button.disabled = false;
-            button.textContent = originalText;
-
-        }
-
-    });
-}
+    } catch (error) {
+        alert("Something went wrong. Please try again.");
+    } finally {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    }
+});
 
