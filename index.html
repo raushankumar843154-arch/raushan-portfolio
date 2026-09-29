@@ -333,58 +333,13 @@
             me a message.
         </p>
 
-        <form id="contact-form" method="POST">
-
-            <!-- Web3Forms Access Key -->
-            <input
-                type="hidden"
-                name="access_key"
-                value="37ba2b38-e8bb-4d98-b563-a3fb45189a4c"
-            >
-
-            <!-- Email Subject -->
-            <input
-                type="hidden"
-                name="subject"
-                value="New Message from Raushan Portfolio"
-            >
-
-            <!-- Name -->
-            <input
-                type="text"
-                name="name"
-                placeholder="Enter Your Name"
-                maxlength="50"
-                required
-            >
-
-            <!-- Email -->
-            <input
-                type="email"
-                name="email"
-                placeholder="Enter Your Email"
-                maxlength="100"
-                required
-            >
-
-            <!-- Message -->
-            <textarea
-                name="message"
-                placeholder="Enter Your Message"
-                rows="6"
-                maxlength="1000" required>
-            </textarea>
-
-           
-            <!-- Send Button -->
-            <button type="submit">
-                Send Message
-            </button>
-
-            <!-- Result -->
-            <p id="form-result"></p>
-
-        </form>
+<form action="https://api.web3forms.com/submit" method="POST">
+  <input type="hidden" name="access_key" value="b45b3a27-24d3-40fd-90e1-99d75d034837">
+  <input type="text" name="Enter your Name" required>
+  <input type="email" name="Enter your Email" required>
+  <textarea name="Enter your Message" required></textarea>
+  <button type="submit">Submit</button>
+</form>
 
     </div>
 </section>
