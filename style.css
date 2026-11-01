@@ -534,9 +534,9 @@ section {
 .skill-card {
     padding: 25px;
 
-    background: #1e293b;
+    background: color: #4DD0E1;
 
-    border: 1px solid #ddd;
+    border: 4px solid #ddd;
 
     border-radius: 10px;
 
@@ -561,7 +561,7 @@ section {
 
 
 .skill-info h3 {
-    font-size: 18px;
+    font-size: 25px;
 }
 
 
@@ -594,48 +594,7 @@ section {
 }
 
 
-/* Skill Percentages */
 
-.progress.html {
-    width: 90%;
-}
-
-
-.progress.css {
-    width: 75%;
-}
-
-
-.progress.javascript {
-    width: 50%;
-}
-
-
-.progress.cpp {
-    width: 65%;
-}
-
-
-.progress.dsa {
-    width: 55%;
-}
-
-
-.progress.github {
-    width: 60%;
-}
-
-.progress.python {
-    width: 50%;
-}
-
-.progress.mysql {
-    width: 50%;
-}
-
-.progress.php {
-    width: 50%;
-}
 
 /* Projects */
 
